@@ -1,0 +1,52 @@
+#!/usr/bin/env python
+
+"""
+Author: Prashant Priyadarshi
+Description: Python script to enter and delete values from a Combobox
+"""
+
+from tkinter import *
+from tkinter import ttk
+
+
+def fill_combobox():
+    """
+    Function to enter values in the combobox
+    """
+    item_list = []
+    for num in range(1, 11):
+        items = 'Item-' + str(num)
+        item_list.append(items)
+    my_combobox['values'] = item_list
+    my_combobox.current(0)
+
+
+def reset_combobox():
+    """
+    Function to delete values from the combobox
+    """
+    my_combobox['values'] = []
+    my_combobox.set('')
+
+
+root = Tk()
+root.geometry("250x100")
+root.title("Combobox")
+
+my_combobox_label = Label(root, text="Combobox: ")
+my_combobox_label.grid(row=0, column=0, padx=40)
+
+# Combobox with no values
+values = StringVar()
+my_combobox = ttk.Combobox(root, width=10, textvariable=values)
+my_combobox.grid(row=0, column=1)
+
+# Button to enter values in the Combobox
+fill_button = Button(root, text="Fill Combobox", command=fill_combobox)
+fill_button.grid(row=1, columnspan=2, pady=10)
+
+# Button to delete values in the Combobox
+reset_button = Button(root, text="Reset Combobox", command=reset_combobox)
+reset_button.grid(row=2, columnspan=2)
+
+root.mainloop()
